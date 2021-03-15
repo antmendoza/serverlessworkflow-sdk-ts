@@ -1,0 +1,35 @@
+{
+  "name": "json-schema-to-typescript-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "generate-ts": "npm run clean && tsc",
+    "clean": "rm -rf ./**/**.js && rm -rf ./**/**.js.map",
+    "tsc": "tsc",
+    "test": "npm run tsc && jasmine --config=./spec/support/jasmine.json"
+  },
+  "dependencies": {
+    "@types/node": "^13.13.4",
+    "@types/prettier": "^2.2.2",
+    "json-schema-to-typescript": "9.0.0",
+    "typescript": "3.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@types/jasmine": "^3.6.6",
+    "builder-pattern": "^1.2.4",
+    "jasmine": "^3.6.4"
+  }
+}
