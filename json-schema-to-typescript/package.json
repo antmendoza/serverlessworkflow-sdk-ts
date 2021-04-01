@@ -6,7 +6,7 @@
   "typings": "index.d.ts",
   "scripts": {
     "build": "npm run clean && tsc",
-    "generate-ts": "npm run clean && tsc",
+    "generate-ts": "npm run tsc src/generateTsFromJSONSchema.ts && node src/generateTsFromJSONSchema.js",
     "clean": "rm -rf ./**/**.js && rm -rf ./**/**.js.map",
     "tsc": "tsc",
     "test": "npm run tsc && jasmine --config=./spec/support/jasmine.json"

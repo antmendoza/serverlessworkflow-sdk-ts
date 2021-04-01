@@ -1,5 +1,5 @@
 import {Builder} from "builder-pattern";
-import {Workflow} from "../src/workflow";
+import {StartdefWorkflowState, Workflow} from "../src/workflow";
 
 describe("", () => {
 
@@ -12,7 +12,7 @@ describe("", () => {
             .version("1.0")
             .name("Greeting Workflow")
             .description("Greet Someone")
-            .start("Greet")
+            .start(Builder<StartdefWorkflowState>().schedule("").build())
             .functions([
                 {
                     name: "greetingFunction",
