@@ -125,7 +125,7 @@ describe("base-workflow", () => {
 
 
     it('should generate YAML from workflow object', () => {
-        const yamlWorkflow: string = BaseWorkflow.toYaml(new WorkflowBuilder()
+        const yamlWorkflow: string = BaseWorkflow.toYAML(new WorkflowBuilder()
             .withId("helloworld")
             .withVersion("1.0")
             .withName("Hello World Workflow")

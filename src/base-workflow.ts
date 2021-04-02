@@ -41,7 +41,7 @@ export class BaseWorkflow {
         return JSON.stringify(workflow);
     }
 
-    static toYaml(workflow: Workflow): string {
+    static toYAML(workflow: Workflow): string {
         return yaml.dump(workflow);
     }
 
