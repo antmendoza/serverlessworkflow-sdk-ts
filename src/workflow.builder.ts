@@ -1,7 +1,7 @@
 import {
     Workflow
 } from "./model/workflow";
-import {Functions, States} from "./model/types";
+import {FunctionsType, StatesType} from "./model/types";
 
 
 export class WorkflowBuilder {
@@ -39,7 +39,7 @@ export class WorkflowBuilder {
         return this;
     }
 
-    withFunctions(functions: Functions): WorkflowBuilder {
+    withFunctions(functions: FunctionsType): WorkflowBuilder {
         this.model.functions = functions;
         return this;
     }
@@ -50,7 +50,7 @@ export class WorkflowBuilder {
     }
 
 
-    withStates(value: States): WorkflowBuilder {
+    withStates(value: StatesType): WorkflowBuilder {
         this.model.states = value;
         return this;
     }

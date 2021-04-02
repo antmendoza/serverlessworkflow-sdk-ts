@@ -1,8 +1,8 @@
-import {FunctionRefImpl, FunctionRefImplArguments} from "./model/types";
+import {FunctionRefImplType, FunctionRefImplArgumentsType} from "./model/types";
 
 export class FunctionRefImplBuilder {
     // @ts-ignore
-    private model: FunctionRefImpl = {};
+    private model: FunctionRefImplType = {};
 
 
     withRefName(value: string): FunctionRefImplBuilder {
@@ -11,12 +11,12 @@ export class FunctionRefImplBuilder {
 
     }
 
-    withArguments(value: FunctionRefImplArguments): FunctionRefImplBuilder {
+    withArguments(value: FunctionRefImplArgumentsType): FunctionRefImplBuilder {
         this.model.arguments = value;
         return this;
     }
 
-    build(): FunctionRefImpl{
+    build(): FunctionRefImplType{
         return this.model;
     }
 

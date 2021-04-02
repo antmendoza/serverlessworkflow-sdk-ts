@@ -1,5 +1,5 @@
 import {OperationState} from "./model/workflow";
-import {ActionMode, Actions} from "./model/types";
+import {ActionModeType, ActionsType} from "./model/types";
 
 export class OperationStateBuilder {
 
@@ -14,7 +14,7 @@ export class OperationStateBuilder {
     }
 
 
-    withActionMode(value: ActionMode): OperationStateBuilder {
+    withActionMode(value: ActionModeType): OperationStateBuilder {
         this.model.actionMode = value;
         return this;
 
@@ -25,7 +25,7 @@ export class OperationStateBuilder {
         return this;
     }
 
-    withActions(value: Actions): OperationStateBuilder{
+    withActions(value: ActionsType): OperationStateBuilder{
         this.model.actions = value;
         return this;
     }

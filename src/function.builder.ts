@@ -1,8 +1,8 @@
-import {Function} from "./model/types";
+import {FunctionType} from "./model/types";
 
 export class FunctionBuilder {
     // @ts-ignore
-    private model: Function = {};
+    private model: FunctionType = {};
 
     withName(value: string): FunctionBuilder {
         this.model.name = value;

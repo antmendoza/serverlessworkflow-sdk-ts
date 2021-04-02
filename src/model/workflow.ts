@@ -8,7 +8,7 @@
 
 
 
-import {ActionMode, Actions, DataConditions, End, Functions, StateDataFilter, States} from "./types";
+import {ActionModeType, ActionsType, DataConditionsType, EndType, FunctionsType, StateDataFilterType, StatesType} from "./types";
 
 /**
  * Serverless Workflow specification - workflow schema
@@ -161,7 +161,7 @@ export type Workflow = {
         }[]
       ];
     functions?:
-        Functions;
+        FunctionsType;
   retries?:
     | string
     | [
@@ -229,7 +229,7 @@ export type Workflow = {
   /**
    * State definitions
    */
-  states?: States;
+  states?: StatesType;
   [k: string]: unknown;
 } & {
   [k: string]: unknown;
@@ -298,11 +298,11 @@ export interface DelayState {
   /**
    * State end definition
    */
-  end?: End;
+  end?: EndType;
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilter;
+  stateDataFilter?: StateDataFilterType;
   /**
    * Amount of time (ISO 8601 format) to delay
    */
@@ -393,19 +393,19 @@ export interface OperationState {
    * State end definition
    */
   end?:
-    End;
+    EndType;
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilter;
+  stateDataFilter?: StateDataFilterType;
   /**
    * Specifies whether actions are performed in sequence or in parallel
    */
-  actionMode?: ActionMode;
+  actionMode?: ActionModeType;
   /**
    * Actions to be performed
    */
-  actions?: Actions;
+  actions?: ActionsType;
   /**
    * States error handling and retries definitions
    */
@@ -490,11 +490,11 @@ export interface ParallelState {
    * State end definition
    */
   end?:
-    End;
+    EndType;
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilter;
+  stateDataFilter?: StateDataFilterType;
   /**
    * Branch Definitions
    */
@@ -597,11 +597,11 @@ export interface Databasedswitch {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilter;
+  stateDataFilter?: StateDataFilterType;
   /**
    * Defines conditions evaluated against state data
    */
-  dataConditions: DataConditions;
+  dataConditions: DataConditionsType;
   /**
    * States error handling and retries definitions
    */
@@ -710,7 +710,7 @@ export interface Enddatacondition {
   /**
    * Workflow end definition
    */
-  end: End;
+  end: EndType;
   /**
    * Metadata information
    */
@@ -737,7 +737,7 @@ export interface Eventbasedswitch {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilter;
+  stateDataFilter?: StateDataFilterType;
   /**
    * Defines conditions evaluated against events
    */
@@ -868,7 +868,7 @@ export interface Enddeventcondition {
    * Explicit transition to end
    */
   end:
-    End;
+    EndType;
   /**
    * Event data filter definition
    */
@@ -909,7 +909,7 @@ export interface SubFlowState {
    * State end definition
    */
   end?:
-    End;
+    EndType;
   /**
    * Workflow execution must wait for sub-workflow to finish before continuing
    */
@@ -946,7 +946,7 @@ export interface SubFlowState {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilter;
+  stateDataFilter?: StateDataFilterType;
   /**
    * States error handling and retries definitions
    */
@@ -1031,7 +1031,7 @@ export interface InjectState {
    * State end definition
    */
   end?:
-    End;
+    EndType;
   /**
    * JSON object which can be set as states data input and can be manipulated via filters
    */
@@ -1041,7 +1041,7 @@ export interface InjectState {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilter;
+  stateDataFilter?: StateDataFilterType;
   /**
    * Next transition of the workflow after subflow has completed
    */
@@ -1115,7 +1115,7 @@ export interface ForEachState {
    * State end definition
    */
   end?:
-    End;
+    EndType;
   /**
    * Workflow expression selecting an array element of the states data
    */
@@ -1150,7 +1150,7 @@ export interface ForEachState {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilter;
+  stateDataFilter?: StateDataFilterType;
   /**
    * States error handling and retries definitions
    */
@@ -1265,7 +1265,7 @@ export interface CallbackState {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilter;
+  stateDataFilter?: StateDataFilterType;
   /**
    * States error handling and retries definitions
    */
@@ -1319,7 +1319,7 @@ export interface CallbackState {
    * State end definition
    */
   end?:
-    End;
+    EndType;
   /**
    * Unique Name of a workflow state which is responsible for compensation of this state
    */

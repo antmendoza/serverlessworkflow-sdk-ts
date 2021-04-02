@@ -9,11 +9,11 @@ import {
     SwitchState, Transitiondatacondition
 } from "./workflow";
 
-export type FunctionRefImplArguments = {
+export type FunctionRefImplArgumentsType = {
     [k: string]: unknown;
 };
 
-export type FunctionRefImpl = {
+export type FunctionRefImplType = {
     /**
      * Name of the referenced function
      */
@@ -21,12 +21,12 @@ export type FunctionRefImpl = {
     /**
      * Function arguments
      */
-    arguments?: FunctionRefImplArguments;
+    arguments?: FunctionRefImplArgumentsType;
 };
-export type FunctionRef = | string
-    | FunctionRefImpl;
+export type FunctionRefType = | string
+    | FunctionRefImplType;
 
-export  type EventRef = {
+export  type EventRefType = {
     /**
      * Reference to the unique name of a 'produced' event definition
      */
@@ -51,16 +51,16 @@ export  type EventRef = {
     };
 };
 
-export type Action = {
+export type ActionType = {
     /**
      * Unique action definition name
      */
     name?: string;
-    functionRef: FunctionRef;
+    functionRef: FunctionRefType;
     /**
      * References a 'trigger' and 'result' reusable event definitions
      */
-    eventRef: EventRef;
+    eventRef: EventRefType;
     /**
      * Time period to wait for function execution to complete
      */
@@ -83,10 +83,10 @@ export type Action = {
         toStateData?: string;
     };
 };
-export type Actions = Action[];
+export type ActionsType = ActionType[];
 
 
-export type Function = {
+export type FunctionType = {
     /**
      * Unique function name
      */
@@ -101,12 +101,12 @@ export type Function = {
     type?: "rest" | "rpc" | "expression";
 };
 
-export type Functions = | string
+export type FunctionsType = | string
     | [
-    Function,
-    ...Function[]
+    FunctionType,
+    ...FunctionType[]
 ];
-export type States = [
+export type StatesType = [
     (
         | DelayState
         | EventState
@@ -131,7 +131,7 @@ export type States = [
         )[]
 ];
 
-export type StateDataFilter = {
+export type StateDataFilterType = {
     /**
      * Workflow expression to filter the state data input
      */
@@ -142,7 +142,7 @@ export type StateDataFilter = {
     output?: string;
 };
 
-export type End = | boolean
+export type EndType = | boolean
     | {
     /**
      * If true, completes all execution flows in the given workflow instance
@@ -177,6 +177,6 @@ export type End = | boolean
     compensate?: boolean;
 };
 
-export type DataConditions = (Transitiondatacondition | Enddatacondition)[];
+export type DataConditionsType = (Transitiondatacondition | Enddatacondition)[];
 
-export type ActionMode = "sequential" | "parallel";
+export type ActionModeType = "sequential" | "parallel";
