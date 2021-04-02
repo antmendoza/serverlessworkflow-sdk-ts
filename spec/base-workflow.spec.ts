@@ -14,10 +14,10 @@
  * limitations under the License.
  *
  */
-import {BaseWorkflow} from "../src/base-workflow";
 import {Workflow} from "../src/model/workflow";
 import {WorkflowBuilder} from "../src/model/workflow.builder";
 import {InjectStateBuilder} from "../src/model/inject-state.builder";
+import {BaseWorkflow} from "../src/base-workflow";
 
 
 describe("base-workflow fromSource", () => {
@@ -25,24 +25,24 @@ describe("base-workflow fromSource", () => {
     const testCases = [
         {
             description: "should generate workflow object from JSON file",
-            file: "/base-workflow-hello-world.json",
+            file: "./spec/base-workflow-hello-world.json",
 
         },
         {
             description: "should generate workflow object from YAML file",
-            file: "/base-workflow-hello-world.yaml",
+            file: "./spec/base-workflow-hello-world.yaml",
 
         },
         {
             description: "should generate workflow object from YML file",
-            file: "/base-workflow-hello-world.yml",
+            file: "./spec/base-workflow-hello-world.yml",
 
         }
     ];
     testCases.forEach(test => {
 
         it(test.description, function () {
-            const workflow: Workflow = BaseWorkflow.fromSource(__dirname + test.file);
+            const workflow: Workflow = BaseWorkflow.fromSource( test.file);
 
             expect(workflow.id).toBe("helloworld");
             expect(workflow.version).toBe("1.0");
@@ -73,7 +73,7 @@ describe("base-workflow fromSource", () => {
 
     it('should throws error if format is not json or yaml', () => {
         expect(() => {
-                BaseWorkflow.fromSource(__dirname + "/base-workflow-hello-world.xxx")
+                BaseWorkflow.fromSource("./spec/base-workflow-hello-world.xxx")
             }
         ).toThrow(new Error("File format not supported"));
     });

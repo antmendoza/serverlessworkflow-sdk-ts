@@ -79,7 +79,7 @@ describe("applicationrequest workflow", () => {
             .build();
 
 
-        const expected = JSON.parse(fs.readFileSync(__dirname + "/applicantrequest.json").toLocaleString()) as any;
+        const expected = JSON.parse(fs.readFileSync( "./spec/applicantrequest.json").toLocaleString()) as any;
         expect(workflow).toEqual(expected);
 
     });
