@@ -8,7 +8,16 @@
 
 
 
-import {ActionModeType, ActionsType, DataConditionsType, EndType, FunctionsType, StateDataFilterType, StatesType} from "./types";
+import {
+    ActionModeType,
+    ActionsType,
+    DataConditionsType,
+    DefaultTransitionType,
+    EndType,
+    FunctionsType,
+    StateDataFilterType,
+    StatesType
+} from "./types";
 
 /**
  * Serverless Workflow specification - workflow schema
@@ -264,6 +273,76 @@ export type EventState =
       [k: string]: unknown;
     };
 export type SwitchState = Databasedswitch | Eventbasedswitch;
+export type Transition =
+    | string
+    | {
+    /**
+     * Name of state to transition to
+     */
+    nextState: string;
+    /**
+     * Array of events to be produced before the transition happens
+     */
+    produceEvents?: {
+        /**
+         * References a name of a defined event
+         */
+        eventRef: string;
+        /**
+         * If String, expression which selects parts of the states data output to become the data of the produced event. If object a custom object to become the data of produced event.
+         */
+        data?:
+            | string
+            | {
+            [k: string]: unknown;
+        };
+        /**
+         * Add additional event extension context attributes
+         */
+        contextAttributes?: {
+            [k: string]: string;
+        };
+    }[];
+    /**
+     * If set to true, triggers workflow compensation when before this transition is taken. Default is false
+     */
+    compensate?: boolean;
+};
+export type End =
+    | boolean
+    | {
+    /**
+     * If true, completes all execution flows in the given workflow instance
+     */
+    terminate?: boolean;
+    /**
+     * Defines events that should be produced
+     */
+    produceEvents?: {
+        /**
+         * References a name of a defined event
+         */
+        eventRef: string;
+        /**
+         * If String, expression which selects parts of the states data output to become the data of the produced event. If object a custom object to become the data of produced event.
+         */
+        data?:
+            | string
+            | {
+            [k: string]: unknown;
+        };
+        /**
+         * Add additional event extension context attributes
+         */
+        contextAttributes?: {
+            [k: string]: string;
+        };
+    }[];
+    /**
+     * If set to true, triggers workflow compensation. Default is false
+     */
+    compensate?: boolean;
+};
 
 export interface Exectimeout {
   /**
@@ -578,6 +657,8 @@ export interface ParallelState {
       [k: string]: string;
   };
 }
+
+
 /**
  * Permits transitions to other states based on data conditions
  */
@@ -616,13 +697,7 @@ export interface Databasedswitch {
   /**
    * Default transition of the workflow if there is no matching data conditions. Can include a transition or end definition
    */
-  default?:
-    | {
-        [k: string]: unknown;
-      }
-    | {
-        [k: string]: unknown;
-      };
+  default?: DefaultTransitionType;
   /**
    * Unique Name of a workflow state which is responsible for compensation of this state
    */
@@ -760,13 +835,7 @@ export interface Eventbasedswitch {
   /**
    * Default transition of the workflow if there is no matching data conditions. Can include a transition or end definition
    */
-  default?:
-    | {
-        [k: string]: unknown;
-      }
-    | {
-        [k: string]: unknown;
-      };
+  default?: DefaultTransitionType;
   /**
    * Unique Name of a workflow state which is responsible for compensation of this state
    */

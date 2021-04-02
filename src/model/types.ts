@@ -1,12 +1,12 @@
 import {
     CallbackState,
-    DelayState, Enddatacondition,
+    DelayState, End, Enddatacondition,
     EventState, ForEachState,
     InjectState,
     OperationState,
     ParallelState,
     SubFlowState,
-    SwitchState, Transitiondatacondition
+    SwitchState, Transition, Transitiondatacondition
 } from "./workflow";
 
 export type FunctionRefImplArgumentsType = {
@@ -180,3 +180,8 @@ export type EndType = | boolean
 export type DataConditionsType = (Transitiondatacondition | Enddatacondition)[];
 
 export type ActionModeType = "sequential" | "parallel";
+export type DefaultTransitionType = {
+    transition: Transition;
+    end: End;
+};
+

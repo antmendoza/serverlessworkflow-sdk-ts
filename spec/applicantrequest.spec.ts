@@ -8,6 +8,7 @@ import {OperationStateBuilder} from "../src/operation-state.builder";
 import {SubFlowStateBuilder} from "../src/sub-flow-state.builder";
 import {ActionBuilder} from "../src/action.builder";
 import {FunctionRefImplBuilder} from "../src/function-ref-impl.builder";
+import {DefaultTransitionTypeBuilder} from "../src/default-transition-type.builder";
 
 
 describe("applicationrequest workflow", () => {
@@ -37,7 +38,10 @@ describe("applicationrequest workflow", () => {
                                 .withCondition("${ .applicants | .age < 18 }")
                                 .withTransition("RejectApplication")
                                 .build()])
-                    //.withDefault(new TransitionBuilder().withName().build())
+                    .withDefault(new DefaultTransitionTypeBuilder()
+                        .withTransition(
+                            "RejectApplication"
+                        ).build())
                     .build(),
                 new SubFlowStateBuilder().withName("StartApplication").withWorkflowId("startApplicationWorkflowId")
                     .withEnd(true)
@@ -50,8 +54,8 @@ describe("applicationrequest workflow", () => {
                         new ActionBuilder().withFunctionRef(
                             new FunctionRefImplBuilder()
                                 .withRefName("sendRejectionEmailFunction")
-                                .withArguments({ applicant: '${ .applicant }' })
-                            .build()
+                                .withArguments({applicant: '${ .applicant }'})
+                                .build()
                         )
                             .build()
                     ])
