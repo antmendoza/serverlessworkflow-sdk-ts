@@ -1,6 +1,6 @@
 import {WorkflowBuilder} from "../src/workflow-builder";
 import * as fs from "fs";
-import {Workflow} from "../src/workflow";
+import {Workflow} from "../src/model/workflow";
 import {FunctionBuilder} from "../src/function-builder";
 import {DatabasedswitchBuilder} from "../src/switch-state-builder";
 import {TransitiondataconditionBuilder} from "../src/transitiondatacondition-builder";
@@ -32,7 +32,6 @@ describe("applicationrequest workflow", () => {
                                 .withCondition("${ .applicants | .age < 18 }")
                                 .withTransition("RejectApplication")
                                 .build()])
-                    .withDefault()
                     .build()])
             .build();
 

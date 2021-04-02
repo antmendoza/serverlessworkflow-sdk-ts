@@ -2,7 +2,7 @@ import {
     Functions,
     States,
     Workflow
-} from "./workflow";
+} from "./model/workflow";
 
 
 export class WorkflowBuilder {

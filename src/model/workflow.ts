@@ -4,9 +4,6 @@
  * DO NOT MODIFY IT BY HAND. Instead, modify the source JSONSchema file,
  * and run json-schema-to-typescript to regenerate this file.
  */
-
-
-
 export type Function = {
     /**
      * Unique function name
@@ -51,6 +48,57 @@ export type States = [
         | CallbackState
         )[]
 ];
+
+export type StateDataFilter = {
+    /**
+     * Workflow expression to filter the state data input
+     */
+    input?: string;
+    /**
+     * Workflow expression that filters the state data output
+     */
+    output?: string;
+};
+
+export type End = | boolean
+    | {
+    /**
+     * If true, completes all execution flows in the given workflow instance
+     */
+    terminate?: boolean;
+    /**
+     * Defines events that should be produced
+     */
+    produceEvents?: {
+        /**
+         * References a name of a defined event
+         */
+        eventRef: string;
+        /**
+         * If String, expression which selects parts of the states data output to become the data of the produced event. If object a custom object to become the data of produced event.
+         */
+        data?:
+            | string
+            | {
+            [k: string]: unknown;
+        };
+        /**
+         * Add additional event extension context attributes
+         */
+        contextAttributes?: {
+            [k: string]: string;
+        };
+    }[];
+    /**
+     * If set to true, triggers workflow compensation. Default is false
+     */
+    compensate?: boolean;
+};
+
+export type DataConditions = (Transitiondatacondition | Enddatacondition)[];
+
+
+
 /**
  * Serverless Workflow specification - workflow schema
  */
@@ -320,52 +368,6 @@ export interface Exectimeout {
    */
   runBefore?: string;
 }
-
-type StateEndDef = {
-    /**
-     * If true, completes all execution flows in the given workflow instance
-     */
-    terminate?: boolean;
-    /**
-     * Defines events that should be produced
-     */
-    produceEvents?: {
-        /**
-         * References a name of a defined event
-         */
-        eventRef: string;
-        /**
-         * If String, expression which selects parts of the states data output to become the data of the produced event. If object a custom object to become the data of produced event.
-         */
-        data?:
-            | string
-            | {
-            [k: string]: unknown;
-        };
-        /**
-         * Add additional event extension context attributes
-         */
-        contextAttributes?: {
-            [k: string]: string;
-        };
-    }[];
-    /**
-     * If set to true, triggers workflow compensation. Default is false
-     */
-    compensate?: boolean;
-};
-
-type StateDataFilterDef = {
-    /**
-     * Workflow expression to filter the state data input
-     */
-    input?: string;
-    /**
-     * Workflow expression that filters the state data output
-     */
-    output?: string;
-};
-
 /**
  * Causes the workflow execution to delay for a specified duration
  */
@@ -385,13 +387,11 @@ export interface DelayState {
   /**
    * State end definition
    */
-  end?:
-    | boolean
-    | StateEndDef;
+  end?: End;
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilterDef;
+  stateDataFilter?: StateDataFilter;
   /**
    * Amount of time (ISO 8601 format) to delay
    */
@@ -480,12 +480,11 @@ export interface OperationState {
    * State end definition
    */
   end?:
-    | boolean
-    | StateEndDef;
+    End;
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilterDef;
+  stateDataFilter?: StateDataFilter;
   /**
    * Specifies whether actions are performed in sequence or in parallel
    */
@@ -585,12 +584,11 @@ export interface ParallelState {
    * State end definition
    */
   end?:
-    | boolean
-    | StateEndDef;
+    End;
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilterDef;
+  stateDataFilter?: StateDataFilter;
   /**
    * Branch Definitions
    */
@@ -603,7 +601,7 @@ export interface ParallelState {
       }
   )[];
   /**
-   * Option types on how to complete branch execution.
+   * Option model on how to complete branch execution.
    */
   completionType?: "and" | "xor" | "n_of_m";
   /**
@@ -674,9 +672,6 @@ export interface ParallelState {
       [k: string]: string;
   };
 }
-
-export type DataConditionsDef = (Transitiondatacondition | Enddatacondition)[];
-
 /**
  * Permits transitions to other states based on data conditions
  */
@@ -696,11 +691,11 @@ export interface Databasedswitch {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilterDef;
+  stateDataFilter?: StateDataFilter;
   /**
    * Defines conditions evaluated against state data
    */
-  dataConditions: DataConditionsDef;
+  dataConditions: DataConditions;
   /**
    * States error handling and retries definitions
    */
@@ -809,9 +804,7 @@ export interface Enddatacondition {
   /**
    * Workflow end definition
    */
-  end:
-    | boolean
-    | StateEndDef;
+  end: End;
   /**
    * Metadata information
    */
@@ -838,7 +831,7 @@ export interface Eventbasedswitch {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilterDef;
+  stateDataFilter?: StateDataFilter;
   /**
    * Defines conditions evaluated against events
    */
@@ -969,8 +962,7 @@ export interface Enddeventcondition {
    * Explicit transition to end
    */
   end:
-    | boolean
-    | StateEndDef;
+    End;
   /**
    * Event data filter definition
    */
@@ -1011,8 +1003,7 @@ export interface SubFlowState {
    * State end definition
    */
   end?:
-    | boolean
-    | StateEndDef;
+    End;
   /**
    * Workflow execution must wait for sub-workflow to finish before continuing
    */
@@ -1049,7 +1040,7 @@ export interface SubFlowState {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilterDef;
+  stateDataFilter?: StateDataFilter;
   /**
    * States error handling and retries definitions
    */
@@ -1134,8 +1125,7 @@ export interface InjectState {
    * State end definition
    */
   end?:
-    | boolean
-    | StateEndDef;
+    End;
   /**
    * JSON object which can be set as states data input and can be manipulated via filters
    */
@@ -1145,7 +1135,7 @@ export interface InjectState {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilterDef;
+  stateDataFilter?: StateDataFilter;
   /**
    * Next transition of the workflow after subflow has completed
    */
@@ -1219,8 +1209,7 @@ export interface ForEachState {
    * State end definition
    */
   end?:
-    | boolean
-    | StateEndDef;
+    End;
   /**
    * Workflow expression selecting an array element of the states data
    */
@@ -1255,7 +1244,7 @@ export interface ForEachState {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilterDef;
+  stateDataFilter?: StateDataFilter;
   /**
    * States error handling and retries definitions
    */
@@ -1370,7 +1359,7 @@ export interface CallbackState {
   /**
    * State data filter
    */
-  stateDataFilter?: StateDataFilterDef;
+  stateDataFilter?: StateDataFilter;
   /**
    * States error handling and retries definitions
    */
@@ -1424,8 +1413,7 @@ export interface CallbackState {
    * State end definition
    */
   end?:
-    | boolean
-    | StateEndDef;
+    End;
   /**
    * Unique Name of a workflow state which is responsible for compensation of this state
    */
@@ -1441,5 +1429,3 @@ export interface CallbackState {
       [k: string]: string;
   };
 }
-
-

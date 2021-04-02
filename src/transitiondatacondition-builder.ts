@@ -1,4 +1,4 @@
-import {Transitiondatacondition} from "./workflow";
+import {Transitiondatacondition} from "./model/workflow";
 
 export class TransitiondataconditionBuilder {
 

@@ -1,4 +1,4 @@
-import {Databasedswitch, DataConditionsDef} from "./workflow";
+import {Databasedswitch, DataConditions} from "./model/workflow";
 
 
 export class DatabasedswitchBuilder {
@@ -15,7 +15,7 @@ export class DatabasedswitchBuilder {
         return this;
     }
 
-    withDataConditions(value: DataConditionsDef): DatabasedswitchBuilder {
+    withDataConditions(value: DataConditions): DatabasedswitchBuilder {
         this.model.dataConditions = value;
         return this;
     }
@@ -24,9 +24,5 @@ export class DatabasedswitchBuilder {
         return this.model;
     }
 
-    withDefault(value: { [p: string]: unknown } = value) {
-        this.model.default = value;
-        return this;
-    }
 }
 
