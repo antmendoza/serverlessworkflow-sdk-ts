@@ -1,4 +1,3 @@
-
 {
   "id": "greeting",
   "version": "1.0",
@@ -21,11 +20,14 @@
             "refName": "greetingFunction",
             "arguments": {
               "name": "${ .person.name }"
-            } },
+            }
+          },
           "actionDataFilter": {
-            "dataResultsPath": "${ .greeting }"
-          } }
+            "results": "${ .greeting }"
+          }
+        }
       ],
-      "end": true }
+      "end": true
+    }
   ]
 }

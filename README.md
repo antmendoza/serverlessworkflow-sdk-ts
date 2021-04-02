@@ -1,8 +1,11 @@
 # serverlessworkflow-sdk-ts
 
+```sh
+# Using NPM:
+npm install
+npm run build
+```
 
-## https://github.com/ThomasAribart/json-schema-to-ts
-- Schema definition not supported 
+## ???
+According to the documentation, functions has metadata, according to the json schema does not has. 
 
-## https://github.com/bcherny/json-schema-to-typescript
-- Not nice output and does no create object model properly. [workflow.ts](./json-schema-to-typescript/src/workflow.ts)

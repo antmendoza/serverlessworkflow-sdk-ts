@@ -6,17 +6,12 @@
   "typings": "index.d.ts",
   "scripts": {
     "build": "npm run clean && tsc",
-    "generate-ts": "npm run tsc src/generateTsFromJSONSchema.ts && node src/generateTsFromJSONSchema.js",
+    "generate-ts": "npm run tsc src/generateTsModels.ts && node src/generateTsModels.js",
     "clean": "rm -rf ./**/**.js && rm -rf ./**/**.js.map",
     "tsc": "tsc",
     "test": "npm run tsc && jasmine --config=./spec/support/jasmine.json"
   },
-  "dependencies": {
-    "@types/node": "^13.13.4",
-    "@types/prettier": "^2.2.2",
-    "json-schema-to-typescript": "9.0.0",
-    "typescript": "3.8.3"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": ""
@@ -28,8 +23,12 @@
   },
   "homepage": "",
   "devDependencies": {
-    "@types/jasmine": "^3.6.6",
-    "builder-pattern": "^1.2.4",
-    "jasmine": "^3.6.4"
+    "@types/jasmine": "3.6.9",
+    "@types/node": "14.14.37",
+    "@types/prettier": "2.2.3",
+    "builder-pattern": "1.3.0",
+    "jasmine": "3.7.0",
+    "json-schema-to-typescript": "10.1.4",
+    "typescript": "4.2.3"
   }
 }
