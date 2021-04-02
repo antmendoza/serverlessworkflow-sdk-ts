@@ -9,6 +9,7 @@ import {SubFlowStateBuilder} from "../src/sub-flow-state.builder";
 import {ActionBuilder} from "../src/action.builder";
 import {FunctionRefImplBuilder} from "../src/function-ref-impl.builder";
 
+
 describe("applicationrequest workflow", () => {
 
 
@@ -36,6 +37,7 @@ describe("applicationrequest workflow", () => {
                                 .withCondition("${ .applicants | .age < 18 }")
                                 .withTransition("RejectApplication")
                                 .build()])
+                    //.withDefault(new TransitionBuilder().withName().build())
                     .build(),
                 new SubFlowStateBuilder().withName("StartApplication").withWorkflowId("startApplicationWorkflowId")
                     .withEnd(true)
