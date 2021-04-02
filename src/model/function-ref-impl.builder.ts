@@ -1,4 +1,4 @@
-import {FunctionRefImplType, FunctionRefImplArgumentsType} from "./types";
+import {FunctionRefImplArgumentsType, FunctionRefImplType} from "./types";
 
 export class FunctionRefImplBuilder {
     // @ts-ignore
@@ -16,7 +16,7 @@ export class FunctionRefImplBuilder {
         return this;
     }
 
-    build(): FunctionRefImplType{
+    build(): FunctionRefImplType {
         return this.model;
     }
 

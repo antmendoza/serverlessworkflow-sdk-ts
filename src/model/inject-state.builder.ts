@@ -5,9 +5,7 @@ export class InjectStateBuilder {
         type: "inject"
     };
 
-    build(): InjectState {
-        return this.model;
-    }
+
 
     withName(value: string): InjectStateBuilder {
         this.model.name = value;
@@ -25,5 +23,9 @@ export class InjectStateBuilder {
         this.model.end = value;
         return this;
 
+    }
+
+    build(): InjectState {
+        return this.model;
     }
 }

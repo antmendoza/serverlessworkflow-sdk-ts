@@ -11,14 +11,14 @@ export class TransitiondataconditionBuilder {
 
     }
 
+
+    withTransition(value: string): TransitiondataconditionBuilder {
+        this.model.transition = value;
+        return this;
+    }
+
     build(): Transitiondatacondition {
         //TODO validate
         return this.model;
-    }
-
-    withTransition(value: string): TransitiondataconditionBuilder {
-
-        this.model.transition = value;
-        return this;
     }
 }

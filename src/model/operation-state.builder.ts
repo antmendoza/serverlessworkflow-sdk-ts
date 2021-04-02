@@ -20,17 +20,17 @@ export class OperationStateBuilder {
 
     }
 
-    withEnd(value: boolean):OperationStateBuilder {
+    withEnd(value: boolean): OperationStateBuilder {
         this.model.end = value;
         return this;
     }
 
-    withActions(value: ActionsType): OperationStateBuilder{
+    withActions(value: ActionsType): OperationStateBuilder {
         this.model.actions = value;
         return this;
     }
 
-    build(): OperationState{
+    build(): OperationState {
         return this.model;
     }
 

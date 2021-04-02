@@ -1,12 +1,17 @@
 import {
     CallbackState,
-    DelayState, End, Enddatacondition,
-    EventState, ForEachState,
+    DelayState,
+    End,
+    Enddatacondition,
+    EventState,
+    ForEachState,
     InjectState,
     OperationState,
     ParallelState,
     SubFlowState,
-    SwitchState, Transition, Transitiondatacondition
+    SwitchState,
+    Transition,
+    Transitiondatacondition
 } from "./workflow";
 
 export type FunctionRefImplArgumentsType = {

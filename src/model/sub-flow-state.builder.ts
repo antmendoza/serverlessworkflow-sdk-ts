@@ -6,8 +6,6 @@ export class SubFlowStateBuilder {
     };
 
 
-
-
     withName(value: string): SubFlowStateBuilder {
         this.model.name = value;
         return this;

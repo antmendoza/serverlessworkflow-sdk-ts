@@ -7,7 +7,6 @@ export class BaseWorkflow {
 
     static fromSource(filePath: PathLike): Workflow {
 
-
         if (!this.isJSON(filePath) && !this.isYAML(filePath)) {
             throw new Error("File format not supported")
         }
@@ -22,19 +21,19 @@ export class BaseWorkflow {
     }
 
 
-    static toJSON(workflow: Workflow):string {
+    static toJSON(workflow: Workflow): string {
         return JSON.stringify(workflow);
     }
 
-    static toYaml(workflow: Workflow):string {
+    static toYaml(workflow: Workflow): string {
         return yaml.dump(workflow);
     }
 
-    private static  isYAML(filePath: PathLike) {
+    private static isYAML(filePath: PathLike) {
         return filePath.toString().endsWith("yaml") || filePath.toString().endsWith("yml");
     }
 
-    private static  isJSON(filePath: PathLike) {
+    private static isJSON(filePath: PathLike) {
         return filePath.toString().endsWith("json");
     }
 

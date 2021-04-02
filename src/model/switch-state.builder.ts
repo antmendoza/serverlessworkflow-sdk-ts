@@ -21,13 +21,14 @@ export class DatabasedswitchBuilder {
         return this;
     }
 
-    build() {
-        return this.model;
-    }
 
-    withDefault(value:  DefaultTransitionType): DatabasedswitchBuilder {
+    withDefault(value: DefaultTransitionType): DatabasedswitchBuilder {
         this.model.default = value;
         return this;
+    }
+
+    build() {
+        return this.model;
     }
 }
 

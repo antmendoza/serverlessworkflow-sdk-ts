@@ -1,6 +1,4 @@
-import {
-    Workflow
-} from "./workflow";
+import {Workflow} from "./workflow";
 import {FunctionsType, StatesType} from "./types";
 
 
@@ -10,48 +8,49 @@ export class WorkflowBuilder {
     constructor() {
     }
 
-    withId(id: string): WorkflowBuilder {
-        this.model.id = id;
+    withId(value: string): WorkflowBuilder {
+        this.model.id = value;
         return this;
     }
 
 
-    withVersion(version: string): WorkflowBuilder {
-        this.model.version = version;
+    withVersion(value: string): WorkflowBuilder {
+        this.model.version = value;
         return this;
     }
 
 
-    withName(name: string): WorkflowBuilder {
-        this.model.name = name;
+    withName(value: string): WorkflowBuilder {
+        this.model.name = value;
         return this;
 
     }
 
-    withDescription(description: string): WorkflowBuilder {
-        this.model.description = description;
+    withDescription(value: string): WorkflowBuilder {
+        this.model.description = value;
         return this;
 
     }
 
-    withStart(start: string): WorkflowBuilder {
-        this.model.start = start;
+    withStart(value: string): WorkflowBuilder {
+        this.model.start = value;
         return this;
     }
 
-    withFunctions(functions: FunctionsType): WorkflowBuilder {
-        this.model.functions = functions;
+    withFunctions(value: FunctionsType): WorkflowBuilder {
+        this.model.functions = value;
         return this;
-    }
-
-    build(): Workflow {
-        //TODO validate
-        return this.model;
     }
 
 
     withStates(value: StatesType): WorkflowBuilder {
         this.model.states = value;
         return this;
+    }
+
+
+    build(): Workflow {
+        //TODO validate
+        return this.model;
     }
 }
