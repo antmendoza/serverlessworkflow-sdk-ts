@@ -1,4 +1,4 @@
-import {ActionType, FunctionRefType} from "./model/types";
+import {ActionType, FunctionRefType} from "./types";
 
 export class ActionBuilder {
     // @ts-ignore

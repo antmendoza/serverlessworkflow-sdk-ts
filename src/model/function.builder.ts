@@ -1,4 +1,4 @@
-import {FunctionType} from "./model/types";
+import {FunctionType} from "./types";
 
 export class FunctionBuilder {
     // @ts-ignore

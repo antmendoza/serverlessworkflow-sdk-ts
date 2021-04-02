@@ -1,7 +1,7 @@
 import {
     Workflow
-} from "./model/workflow";
-import {FunctionsType, StatesType} from "./model/types";
+} from "./workflow";
+import {FunctionsType, StatesType} from "./types";
 
 
 export class WorkflowBuilder {

@@ -1,5 +1,5 @@
-import {DefaultTransitionType} from "./model/types";
-import {Transition} from "./model/workflow";
+import {DefaultTransitionType} from "./types";
+import {Transition} from "./workflow";
 
 export class DefaultTransitionTypeBuilder {
     // @ts-ignore

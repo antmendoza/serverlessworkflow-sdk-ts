@@ -1,20 +1,19 @@
-import {WorkflowBuilder} from "../src/workflow.builder";
+import {WorkflowBuilder} from "../src/model/workflow.builder";
 import * as fs from "fs";
-import {Workflow} from "../src/model/workflow";
-import {FunctionBuilder} from "../src/function.builder";
-import {DatabasedswitchBuilder} from "../src/switch-state.builder";
-import {TransitiondataconditionBuilder} from "../src/transitiondatacondition.builder";
-import {OperationStateBuilder} from "../src/operation-state.builder";
-import {SubFlowStateBuilder} from "../src/sub-flow-state.builder";
-import {ActionBuilder} from "../src/action.builder";
-import {FunctionRefImplBuilder} from "../src/function-ref-impl.builder";
-import {DefaultTransitionTypeBuilder} from "../src/default-transition-type.builder";
+import {FunctionBuilder} from "../src/model/function.builder";
+import {DatabasedswitchBuilder} from "../src/model/switch-state.builder";
+import {TransitiondataconditionBuilder} from "../src/model/transitiondatacondition.builder";
+import {OperationStateBuilder} from "../src/model/operation-state.builder";
+import {SubFlowStateBuilder} from "../src/model/sub-flow-state.builder";
+import {ActionBuilder} from "../src/model/action.builder";
+import {FunctionRefImplBuilder} from "../src/model/function-ref-impl.builder";
+import {DefaultTransitionTypeBuilder} from "../src/model/default-transition-type.builder";
 
 
 describe("applicationrequest workflow", () => {
 
 
-    it('should generate json', function () {
+    it('should generate Workflow object', function () {
 
         const workflow = new WorkflowBuilder()
             .withId("applicantrequest")
@@ -64,7 +63,7 @@ describe("applicationrequest workflow", () => {
             .build();
 
 
-        const expected = JSON.parse(fs.readFileSync(__dirname + "/applicantrequest.json").toLocaleString()) as Workflow;
+        const expected = JSON.parse(fs.readFileSync(__dirname + "/applicantrequest.json").toLocaleString()) as any;
         expect(workflow).toEqual(expected);
 
     });

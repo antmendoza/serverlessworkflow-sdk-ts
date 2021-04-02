@@ -1,5 +1,5 @@
-import {OperationState} from "./model/workflow";
-import {ActionModeType, ActionsType} from "./model/types";
+import {OperationState} from "./workflow";
+import {ActionModeType, ActionsType} from "./types";
 
 export class OperationStateBuilder {
 

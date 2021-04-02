@@ -1,4 +1,4 @@
-import {SubFlowState} from "./model/workflow";
+import {SubFlowState} from "./workflow";
 
 export class SubFlowStateBuilder {
     private model: SubFlowState = {
