@@ -1,4 +1,4 @@
-import {FunctionRefImpl, FunctionRefImplArguments} from "./model/workflow";
+import {FunctionRefImpl, FunctionRefImplArguments} from "./model/types";
 
 export class FunctionRefImplBuilder {
     // @ts-ignore

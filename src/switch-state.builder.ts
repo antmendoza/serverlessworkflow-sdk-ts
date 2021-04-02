@@ -1,4 +1,5 @@
-import {Databasedswitch, DataConditions} from "./model/workflow";
+import {Databasedswitch} from "./model/workflow";
+import {DataConditions} from "./model/types";
 
 
 export class DatabasedswitchBuilder {

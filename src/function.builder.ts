@@ -1,4 +1,4 @@
-import {Function} from "./model/workflow";
+import {Function} from "./model/types";
 
 export class FunctionBuilder {
     // @ts-ignore

@@ -1,4 +1,4 @@
-import {Action, FunctionRef} from "./model/workflow";
+import {Action, FunctionRef} from "./model/types";
 
 export class ActionBuilder {
     // @ts-ignore
