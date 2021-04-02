@@ -1,13 +1,18 @@
-import {BaseWorkflow} from "./base.workflow";
+import {BaseWorkflow} from "../src/base-workflow";
 import {Workflow} from "../src/model/workflow";
 
 
 describe("base-workflow", () => {
 
 
-    it('should generate Workflow object', function () {
+    it('should generate workflow object from json file', function () {
         const workflow: Workflow = new BaseWorkflow().fromSource(__dirname + "/base-workflow-hello-world.json");
 
+        expect(workflow.id).toBe("helloworld");
+        expect(workflow.version).toBe("1.0");
+        expect(workflow.name).toBe("Hello World Workflow");
+        expect(workflow.description).toBe("Inject Hello World");
+        expect(workflow.start).toBe("Hello State");
         expect(workflow).toEqual({
             "id": "helloworld",
             "version": "1.0",
@@ -25,6 +30,20 @@ describe("base-workflow", () => {
                 }
             ]
         })
+    });
+
+
+
+
+    xit('should generate workflow object from yaml file', function () {
+        const workflow: Workflow = new BaseWorkflow().fromSource(__dirname + "/base-workflow-hello-world.yaml");
+
+        expect(workflow.id).toBe("helloworld");
+        expect(workflow.version).toBe("1.0");
+        expect(workflow.name).toBe("Hello World Workflow");
+        expect(workflow.description).toBe("Inject Hello World");
+        expect(workflow.start).toBe("Hello State");
+
     });
 
 

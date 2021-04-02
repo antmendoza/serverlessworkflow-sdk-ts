@@ -1,5 +1,5 @@
 import {PathLike} from "fs";
-import {Workflow} from "../src/model/workflow";
+import {Workflow} from "./model/workflow";
 import * as fs from "fs";
 
 export class BaseWorkflow {
