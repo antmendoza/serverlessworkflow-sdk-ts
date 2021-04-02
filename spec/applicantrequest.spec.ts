@@ -1,9 +1,13 @@
-import {WorkflowBuilder} from "../src/workflow-builder";
+import {WorkflowBuilder} from "../src/workflow.builder";
 import * as fs from "fs";
 import {Workflow} from "../src/model/workflow";
-import {FunctionBuilder} from "../src/function-builder";
-import {DatabasedswitchBuilder} from "../src/switch-state-builder";
-import {TransitiondataconditionBuilder} from "../src/transitiondatacondition-builder";
+import {FunctionBuilder} from "../src/function.builder";
+import {DatabasedswitchBuilder} from "../src/switch-state.builder";
+import {TransitiondataconditionBuilder} from "../src/transitiondatacondition.builder";
+import {OperationStateBuilder} from "../src/operation-state.builder";
+import {SubFlowStateBuilder} from "../src/sub-flow-state.builder";
+import {ActionBuilder} from "../src/action.builder";
+import {FunctionRefImplBuilder} from "../src/function-ref-impl.builder";
 
 describe("applicationrequest workflow", () => {
 
@@ -32,7 +36,25 @@ describe("applicationrequest workflow", () => {
                                 .withCondition("${ .applicants | .age < 18 }")
                                 .withTransition("RejectApplication")
                                 .build()])
-                    .build()])
+                    .build(),
+                new SubFlowStateBuilder().withName("StartApplication").withWorkflowId("startApplicationWorkflowId")
+                    .withEnd(true)
+                    .build(),
+                new OperationStateBuilder()
+                    .withName("RejectApplication")
+                    .withActionMode("sequential")
+                    .withEnd(true)
+                    .withActions([
+                        new ActionBuilder().withFunctionRef(
+                            new FunctionRefImplBuilder()
+                                .withRefName("sendRejectionEmailFunction")
+                                .withArguments({ applicant: '${ .applicant }' })
+                            .build()
+                        )
+                            .build()
+                    ])
+                    .build()
+            ])
             .build();
 
 
