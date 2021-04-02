@@ -5,10 +5,10 @@ import * as yaml from "js-yaml";
 
 export class BaseWorkflow {
 
-    fromSource(filePath: PathLike): Workflow {
+    static fromSource(filePath: PathLike): Workflow {
 
 
-        if (!this.isJSON(filePath) && !this.isYML(filePath)) {
+        if (!this.isJSON(filePath) && !this.isYAML(filePath)) {
             throw new Error("File format not supported")
         }
 
@@ -21,11 +21,22 @@ export class BaseWorkflow {
 
     }
 
-    private isYML(filePath: PathLike) {
+
+    static toJSON(workflow: Workflow):string {
+        return JSON.stringify(workflow);
+    }
+
+    static toYaml(workflow: Workflow):string {
+        return yaml.dump(workflow);
+    }
+
+    private static  isYAML(filePath: PathLike) {
         return filePath.toString().endsWith("yaml") || filePath.toString().endsWith("yml");
     }
 
-    private isJSON(filePath: PathLike) {
+    private static  isJSON(filePath: PathLike) {
         return filePath.toString().endsWith("json");
     }
+
+
 }
