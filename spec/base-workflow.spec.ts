@@ -1,3 +1,19 @@
+/*
+ * Copyright 2021-Present The Serverless Workflow Specification Authors
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 import {BaseWorkflow} from "../src/base-workflow";
 import {Workflow} from "../src/model/workflow";
 import {WorkflowBuilder} from "../src/model/workflow.builder";
@@ -6,24 +22,24 @@ import {InjectStateBuilder} from "../src/model/inject-state.builder";
 
 describe("base-workflow fromSource", () => {
 
-    const testData = [
+    const testCases = [
         {
-            description: "should generate workflow object from json file",
+            description: "should generate workflow object from JSON file",
             file: "/base-workflow-hello-world.json",
 
         },
         {
-            description: "should generate workflow object from yaml file",
+            description: "should generate workflow object from YAML file",
             file: "/base-workflow-hello-world.yaml",
 
         },
         {
-            description: "should generate workflow object from yml file",
+            description: "should generate workflow object from YML file",
             file: "/base-workflow-hello-world.yml",
 
         }
     ];
-    testData.forEach(test => {
+    testCases.forEach(test => {
 
         it(test.description, function () {
             const workflow: Workflow = BaseWorkflow.fromSource(__dirname + test.file);
@@ -60,8 +76,6 @@ describe("base-workflow fromSource", () => {
                 BaseWorkflow.fromSource(__dirname + "/base-workflow-hello-world.xxx")
             }
         ).toThrow(new Error("File format not supported"));
-
-
     });
 
 

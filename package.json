@@ -1,12 +1,12 @@
 {
-  "name": "json-schema-to-typescript-example",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "sdk-ts",
+  "version": "0.0.1",
+  "description": "Typescript SDK for Serverless Workflow Specification",
+  "main": "",
   "typings": "index.d.ts",
   "scripts": {
     "build": "npm run clean && tsc",
-    "clean": "rm -rf ./**/**.js && rm -rf ./**/**.js.map",
+    "clean": "rm -rf dist",
     "tsc": "tsc",
     "test": "npm run tsc && jasmine --config=./spec/support/jasmine.json"
   },
@@ -17,8 +17,8 @@
     "type": "git",
     "url": ""
   },
-  "author": "",
-  "license": "",
+  "author": "CNCF",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0.txt",
   "bugs": {
     "url": ""
   },

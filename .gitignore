@@ -1,5 +1,9 @@
+
+dist
 node_modules
 **.js
 **.js.map
+dist/**/*.d.ts
+
 
 **/.idea
